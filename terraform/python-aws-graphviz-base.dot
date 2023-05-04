@@ -1,0 +1,116 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_alb.application_load_balancer (expand)" [label = "aws_alb.application_load_balancer", shape = "box"]
+		"[root] aws_cloudwatch_log_group.log-group (expand)" [label = "aws_cloudwatch_log_group.log-group", shape = "box"]
+		"[root] aws_ecr_repository.aws-ecr (expand)" [label = "aws_ecr_repository.aws-ecr", shape = "box"]
+		"[root] aws_ecs_cluster.aws-ecs-cluster (expand)" [label = "aws_ecs_cluster.aws-ecs-cluster", shape = "box"]
+		"[root] aws_ecs_service.aws-ecs-service (expand)" [label = "aws_ecs_service.aws-ecs-service", shape = "box"]
+		"[root] aws_ecs_task_definition.aws-ecs-task (expand)" [label = "aws_ecs_task_definition.aws-ecs-task", shape = "box"]
+		"[root] aws_eip.nat_gateway (expand)" [label = "aws_eip.nat_gateway", shape = "box"]
+		"[root] aws_iam_role.ecsTaskExecutionRole (expand)" [label = "aws_iam_role.ecsTaskExecutionRole", shape = "box"]
+		"[root] aws_iam_role_policy_attachment.ecsTaskExecutionRole_policy (expand)" [label = "aws_iam_role_policy_attachment.ecsTaskExecutionRole_policy", shape = "box"]
+		"[root] aws_internet_gateway.aws-igw (expand)" [label = "aws_internet_gateway.aws-igw", shape = "box"]
+		"[root] aws_lb_listener.listener (expand)" [label = "aws_lb_listener.listener", shape = "box"]
+		"[root] aws_lb_target_group.target_group (expand)" [label = "aws_lb_target_group.target_group", shape = "box"]
+		"[root] aws_nat_gateway.nat_gateway (expand)" [label = "aws_nat_gateway.nat_gateway", shape = "box"]
+		"[root] aws_route.public (expand)" [label = "aws_route.public", shape = "box"]
+		"[root] aws_route_table.private (expand)" [label = "aws_route_table.private", shape = "box"]
+		"[root] aws_route_table.public (expand)" [label = "aws_route_table.public", shape = "box"]
+		"[root] aws_route_table_association.private (expand)" [label = "aws_route_table_association.private", shape = "box"]
+		"[root] aws_route_table_association.public (expand)" [label = "aws_route_table_association.public", shape = "box"]
+		"[root] aws_security_group.load_balancer_security_group (expand)" [label = "aws_security_group.load_balancer_security_group", shape = "box"]
+		"[root] aws_security_group.service_security_group (expand)" [label = "aws_security_group.service_security_group", shape = "box"]
+		"[root] aws_subnet.private (expand)" [label = "aws_subnet.private", shape = "box"]
+		"[root] aws_subnet.public (expand)" [label = "aws_subnet.public", shape = "box"]
+		"[root] aws_vpc.aws-vpc (expand)" [label = "aws_vpc.aws-vpc", shape = "box"]
+		"[root] data.aws_ecs_task_definition.main (expand)" [label = "data.aws_ecs_task_definition.main", shape = "box"]
+		"[root] data.aws_iam_policy_document.assume_role_policy (expand)" [label = "data.aws_iam_policy_document.assume_role_policy", shape = "box"]
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" [label = "provider[\"registry.terraform.io/hashicorp/aws\"]", shape = "diamond"]
+		"[root] var.app_environment" [label = "var.app_environment", shape = "note"]
+		"[root] var.app_name" [label = "var.app_name", shape = "note"]
+		"[root] var.availability_zones" [label = "var.availability_zones", shape = "note"]
+		"[root] var.aws_access_key" [label = "var.aws_access_key", shape = "note"]
+		"[root] var.aws_cloudwatch_retention_in_days" [label = "var.aws_cloudwatch_retention_in_days", shape = "note"]
+		"[root] var.aws_region" [label = "var.aws_region", shape = "note"]
+		"[root] var.aws_secret_key" [label = "var.aws_secret_key", shape = "note"]
+		"[root] var.cidr" [label = "var.cidr", shape = "note"]
+		"[root] var.container_port" [label = "var.container_port", shape = "note"]
+		"[root] var.health_start_period" [label = "var.health_start_period", shape = "note"]
+		"[root] var.private_subnets" [label = "var.private_subnets", shape = "note"]
+		"[root] var.public_subnets" [label = "var.public_subnets", shape = "note"]
+		"[root] aws_alb.application_load_balancer (expand)" -> "[root] aws_security_group.load_balancer_security_group (expand)"
+		"[root] aws_alb.application_load_balancer (expand)" -> "[root] aws_subnet.public (expand)"
+		"[root] aws_cloudwatch_log_group.log-group (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_cloudwatch_log_group.log-group (expand)" -> "[root] var.app_environment"
+		"[root] aws_cloudwatch_log_group.log-group (expand)" -> "[root] var.app_name"
+		"[root] aws_ecr_repository.aws-ecr (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_ecr_repository.aws-ecr (expand)" -> "[root] var.app_environment"
+		"[root] aws_ecr_repository.aws-ecr (expand)" -> "[root] var.app_name"
+		"[root] aws_ecs_cluster.aws-ecs-cluster (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_ecs_cluster.aws-ecs-cluster (expand)" -> "[root] var.app_environment"
+		"[root] aws_ecs_cluster.aws-ecs-cluster (expand)" -> "[root] var.app_name"
+		"[root] aws_ecs_service.aws-ecs-service (expand)" -> "[root] aws_ecs_cluster.aws-ecs-cluster (expand)"
+		"[root] aws_ecs_service.aws-ecs-service (expand)" -> "[root] aws_lb_listener.listener (expand)"
+		"[root] aws_ecs_service.aws-ecs-service (expand)" -> "[root] aws_security_group.service_security_group (expand)"
+		"[root] aws_ecs_service.aws-ecs-service (expand)" -> "[root] aws_subnet.private (expand)"
+		"[root] aws_ecs_service.aws-ecs-service (expand)" -> "[root] data.aws_ecs_task_definition.main (expand)"
+		"[root] aws_ecs_task_definition.aws-ecs-task (expand)" -> "[root] aws_cloudwatch_log_group.log-group (expand)"
+		"[root] aws_ecs_task_definition.aws-ecs-task (expand)" -> "[root] aws_ecr_repository.aws-ecr (expand)"
+		"[root] aws_ecs_task_definition.aws-ecs-task (expand)" -> "[root] aws_iam_role.ecsTaskExecutionRole (expand)"
+		"[root] aws_ecs_task_definition.aws-ecs-task (expand)" -> "[root] var.container_port"
+		"[root] aws_ecs_task_definition.aws-ecs-task (expand)" -> "[root] var.health_start_period"
+		"[root] aws_eip.nat_gateway (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_iam_role.ecsTaskExecutionRole (expand)" -> "[root] data.aws_iam_policy_document.assume_role_policy (expand)"
+		"[root] aws_iam_role.ecsTaskExecutionRole (expand)" -> "[root] var.app_environment"
+		"[root] aws_iam_role.ecsTaskExecutionRole (expand)" -> "[root] var.app_name"
+		"[root] aws_iam_role_policy_attachment.ecsTaskExecutionRole_policy (expand)" -> "[root] aws_iam_role.ecsTaskExecutionRole (expand)"
+		"[root] aws_internet_gateway.aws-igw (expand)" -> "[root] aws_vpc.aws-vpc (expand)"
+		"[root] aws_lb_listener.listener (expand)" -> "[root] aws_alb.application_load_balancer (expand)"
+		"[root] aws_lb_listener.listener (expand)" -> "[root] aws_lb_target_group.target_group (expand)"
+		"[root] aws_lb_target_group.target_group (expand)" -> "[root] aws_vpc.aws-vpc (expand)"
+		"[root] aws_nat_gateway.nat_gateway (expand)" -> "[root] aws_eip.nat_gateway (expand)"
+		"[root] aws_nat_gateway.nat_gateway (expand)" -> "[root] aws_subnet.public (expand)"
+		"[root] aws_route.public (expand)" -> "[root] aws_internet_gateway.aws-igw (expand)"
+		"[root] aws_route.public (expand)" -> "[root] aws_route_table.public (expand)"
+		"[root] aws_route_table.private (expand)" -> "[root] aws_nat_gateway.nat_gateway (expand)"
+		"[root] aws_route_table.private (expand)" -> "[root] var.private_subnets"
+		"[root] aws_route_table.public (expand)" -> "[root] aws_vpc.aws-vpc (expand)"
+		"[root] aws_route_table_association.private (expand)" -> "[root] aws_route_table.private (expand)"
+		"[root] aws_route_table_association.private (expand)" -> "[root] aws_subnet.private (expand)"
+		"[root] aws_route_table_association.public (expand)" -> "[root] aws_route_table.public (expand)"
+		"[root] aws_route_table_association.public (expand)" -> "[root] aws_subnet.public (expand)"
+		"[root] aws_security_group.load_balancer_security_group (expand)" -> "[root] aws_vpc.aws-vpc (expand)"
+		"[root] aws_security_group.service_security_group (expand)" -> "[root] aws_security_group.load_balancer_security_group (expand)"
+		"[root] aws_subnet.private (expand)" -> "[root] aws_vpc.aws-vpc (expand)"
+		"[root] aws_subnet.private (expand)" -> "[root] var.availability_zones"
+		"[root] aws_subnet.private (expand)" -> "[root] var.private_subnets"
+		"[root] aws_subnet.public (expand)" -> "[root] aws_vpc.aws-vpc (expand)"
+		"[root] aws_subnet.public (expand)" -> "[root] var.availability_zones"
+		"[root] aws_subnet.public (expand)" -> "[root] var.public_subnets"
+		"[root] aws_vpc.aws-vpc (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_vpc.aws-vpc (expand)" -> "[root] var.app_environment"
+		"[root] aws_vpc.aws-vpc (expand)" -> "[root] var.app_name"
+		"[root] data.aws_ecs_task_definition.main (expand)" -> "[root] aws_ecs_task_definition.aws-ecs-task (expand)"
+		"[root] data.aws_iam_policy_document.assume_role_policy (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] output.instance_ip_addr (expand)" -> "[root] aws_ecr_repository.aws-ecr (expand)"
+		"[root] output.load_balancer_dns (expand)" -> "[root] aws_alb.application_load_balancer (expand)"
+		"[root] output.nat_gateway_ip (expand)" -> "[root] aws_eip.nat_gateway (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_ecs_service.aws-ecs-service (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_iam_role_policy_attachment.ecsTaskExecutionRole_policy (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_route.public (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_route_table_association.private (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_route_table_association.public (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" -> "[root] var.aws_access_key"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" -> "[root] var.aws_region"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" -> "[root] var.aws_secret_key"
+		"[root] root" -> "[root] output.instance_ip_addr (expand)"
+		"[root] root" -> "[root] output.load_balancer_dns (expand)"
+		"[root] root" -> "[root] output.nat_gateway_ip (expand)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)"
+		"[root] root" -> "[root] var.aws_cloudwatch_retention_in_days"
+		"[root] root" -> "[root] var.cidr"
+	}
+}
+
